@@ -1,10 +1,41 @@
 body {
+  font-family: Verdana, Tahoma, sans-serif
+}
+
+h1 {
+  font-size: clamp(2rem, 2.6rem, 8vw)
+}
+
+h2 {
+  font-size: clamp(1.8rem, 2rem, 8vw)
+}
+
+.linkTitle {
+  font-size: 1.6rem
+}
+
+h1,
+h2,
+.linkTitle {
+  font-weight: 700;
+  line-height: 1.2;
+  margin-bottom: 0.5rem
+}
+
+h1,
+p:first-child {
+  margin-top: 0
+}
+
+.content {
+  font-size: 16px;
+  font-weight: 400;
   line-height: 1.5
 }
 
 header {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-between
 }
 
 header li {
@@ -18,11 +49,6 @@ body {
   margin: 0;
 }
 
-.container {
-  max-width: 1200px;
-  margin: 0 auto;
-}
-
 ul {
   list-style: none;
 }
@@ -31,25 +57,31 @@ ul li {
   display: inline-block;
 }
 
+li a,
+img {
+  display: block
+}
+
 ul {
   padding: 0
 }
 
 ul.list {
   display: grid;
-  gap: 1.5rem;
-  grid-template-columns: 1fr 1fr
+  gap: 1rem
 }
 
-ul.list li.content {
-  border: 1px solid #ccc;
+li.listItem {
   padding: 0.8rem;
   dislay: flex;
 }
 
-.linkTitle {
-  font-size: 1.6rem;
-  margin-bottom: 0.5rem;
+li.listItem,
+#showImage,
+iframe {
+  border: 1px solid #999;
+  border-radius: 6px;
+  overflow: hidden
 }
 
 .linkText {
@@ -58,10 +90,61 @@ ul.list li.content {
 
 ul.social {
   border-top: 1px solid #ccc;
-  padding-top: 0.6rem;
   margin-top: 0.6rem;
+  padding-top: 0.6rem;
 }
 
 ul.social li {
   margin-right: 0.5rem
+}
+
+ul.social img {
+  height: 30px;
+  width: 30px;
+}
+
+#categoryList {
+  margin-bottom: 2rem
+}
+
+#show {
+  display: grid;
+  gap: 3rem;
+  margin-bottom: 3rem;
+}
+
+#show img {
+height: auto;
+max-width: 100%
+}
+
+#showContent {
+  margin-bottom: 1.5rem
+}
+
+.video {
+  padding-bottom: 56.25%;
+  position: relative;
+}
+
+.video iframe {
+  height: 100%;
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 100%;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding-left: 1rem;
+  padding-right: 1rem
+}
+
+@media screen and (min-width: 770px) {
+  ul.list,
+  #show {
+    grid-template-columns: 1fr 1fr
+  }
 }

@@ -1,48 +1,74 @@
-import {component$, Resource, useResource$} from '@builder.io/qwik'
-import {useLocation} from '@builder.io/qwik-city'
+import {component$, Resource} from '@builder.io/qwik'
+import type {RequestHandler} from '@builder.io/qwik-city'
+import {useEndpoint} from '@builder.io/qwik-city'
 import type {DocumentHead} from '@builder.io/qwik-city'
-import type {Show} from '../../../components/dataFech'
+import type {Page} from '../../../components/dataFech'
 import DataFetch from '../../../components/dataFech'
 
+export const onGet: RequestHandler<any> = async ({params}) => {
+	return DataFetch(`show=${params.skuId}`)
+}
+
 export default component$(() => {
-	const location = useLocation()
-	const shows = useResource$<Show>(() => {
-		return DataFetch(`show=${location.params.skuId}`)
-	})
+	const page = useEndpoint<Page>()
 
 	return (
-		<div>
-			<Resource
-				value={shows}
-				onPending={() => <div>Loading...</div>}
-				onRejected={reason => <div>Error: {reason}</div>}
-				onResolved={data => (
-					<ul class="list">
-						{data.map((e, i) => {
-							console.log('Entered')
-							// Return the element. Also pass key
-							return (
-								<li>
-									<div>
-										<a href={e.url}>{e.title}</a>
-									</div>
-									<div>{e.description}</div>
-								</li>
-							)
-						})}
-					</ul>
-				)}
-			/>
-		</div>
+		<Resource
+			value={page}
+			onPending={() => <div>Loading...</div>}
+			onRejected={() => <div>Error</div>}
+			onResolved={data => (
+				<>
+					<div id="show">
+						<div>
+							<h1>{data.title}</h1>
+							<div
+								dangerouslySetInnerHTML={data.content ?? data.description}
+								id="showContent"
+								class="content"
+							/>
+
+							<ul class="social">
+								{data.links.map(link => {
+									return (
+										<li>
+											<a href={link.url} title={`${link.platformName}: ${data.title}`}>
+												<img src={`/icons/${link.platformIcon}.svg`} height="30" />
+											</a>
+										</li>
+									)
+								})}
+							</ul>
+						</div>
+
+						<div>
+							<img id="showImage" src={`/images/${data.slug}.webp`} alt={data.title} />
+						</div>
+					</div>
+
+					{data.youtube && (
+						<section>
+							<h2>Latest video on YouTube</h2>
+							<div class="video">
+								<iframe
+									src={`https://www.youtube-nocookie.com/embed/${data.youtube}`}
+									title="YouTube video player"
+									frameborder="0"
+									allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+									allowfullscreen
+								></iframe>
+							</div>
+						</section>
+					)}
+				</>
+			)}
+		/>
 	)
 })
 
-export const head: DocumentHead = {
-	title: 'Welcome to Qwik',
-	meta: [
-		{
-			name: 'description',
-			content: 'Qwik site description'
-		}
-	]
+export const head: DocumentHead<Page> = ({data}) => {
+	return {
+		title: `${data.title} | Information Highway`,
+		description: data.description
+	}
 }

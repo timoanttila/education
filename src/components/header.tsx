@@ -2,7 +2,7 @@ import {component$} from '@builder.io/qwik'
 import {Link} from '@builder.io/qwik-city'
 
 export default component$(() => {
-	const title = 'The highway of knowledge'
+	const title = 'Information Highway'
 
 	return (
 		<header>
@@ -15,13 +15,10 @@ export default component$(() => {
 			<nav>
 				<ul>
 					<li>
-						<Link href="/business/">Business</Link>
+						<Link href="/">Business</Link>
 					</li>
 					<li>
-						<Link href="/business/">Life Lessons</Link>
-					</li>
-					<li>
-						<Link href="/business/">Business</Link>
+						<Link href="/life/">Life Lessons</Link>
 					</li>
 				</ul>
 			</nav>

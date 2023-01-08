@@ -56,7 +56,7 @@ export default component$(() => {
 											return (
 												<li>
 													<a href={link.url}>
-														<img src={link.platformIcon} height="28" />
+														<img src={`/icons/${link.platformIcon}.svg`} height="30" />
 													</a>
 												</li>
 											)

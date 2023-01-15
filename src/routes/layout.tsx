@@ -1,18 +1,23 @@
 import {component$, Slot} from '@builder.io/qwik'
-import Header from '../components/header'
 
 export default component$(() => {
 	return (
-		<>
-			<Header />
+		<div id="page">
 			<main class="container">
 				<Slot />
 			</main>
 			<footer>
-				<a href="https://timoanttila.com/" target="_blank">
-					Timo Anttila
-				</a>
+				<div class="container">
+					Creator{' '}
+					<a href="https://timoanttila.com/" target="_blank" rel="author">
+						Timo Anttila
+					</a>
+					, powered by{' '}
+					<a href="https://qwik.builder.io/" rel="noopener nofollow" target="_blank">
+						Qwik
+					</a>
+				</div>
 			</footer>
-		</>
+		</div>
 	)
 })

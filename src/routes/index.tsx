@@ -32,7 +32,23 @@ export default component$(() => {
 
 export const head: DocumentHead<Page> = ({data}) => {
 	return {
-		title: data.title,
-		description: data.description
+		title: `${data.title} | Information Highway`,
+		meta: [
+			{
+				name: 'description',
+				property: 'og:description',
+				content: data.description
+			},
+			{
+				property: 'og:title',
+				name: 'twitter:title',
+				content: data.title
+			},
+			{
+				content: `/image/${data.slug}.webp`,
+				name: 'twitter:image',
+				property: 'og:image'
+			}
+		]
 	}
 }

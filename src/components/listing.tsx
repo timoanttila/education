@@ -3,6 +3,7 @@ import {Link} from '@builder.io/qwik-city'
 import {useLocation} from '@builder.io/qwik-city'
 import type {Show} from './dataFech'
 import DataFetch from './dataFech'
+import {ArrowRight} from './icons'
 
 export default component$(() => {
 	const location = useLocation()
@@ -18,13 +19,18 @@ export default component$(() => {
 			onPending={() => <div>Loading...</div>}
 			onRejected={reason => <div>Error: {reason}</div>}
 			onResolved={data => (
-				<ul class="content list">
+				<ul class="content grid list">
 					{data.map(e => {
 						return (
 							<li class="listItem">
 								<div class="linkText">
-									<div class="linkTitle">
-										<Link href={`/show/${e.slug}/`}>{e.title}</Link>
+									<div class="linkTitle grid">
+										<h2 class="grid">
+											<span class="self-center">{e.title}</span>
+										</h2>
+										<Link class="grid" href={`/show/${e.slug}/`}>
+											<ArrowRight />
+										</Link>
 									</div>
 
 									<div class="linkDesc">{e.description}</div>

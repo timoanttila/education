@@ -22,12 +22,16 @@ export interface Show {
 export interface Page {
 	categoryName: string
 	content?: string
+	created: string
 	description: string
+	hasImage?: boolean
 	id: number
 	links: ShowLink[]
 	slug: string
 	title: string
-	youtube?: string
+	updated: string
+	videoId?: string
+	videoName?: string
 }
 
 export default async function dataFetch(query: string): Promise<any> {

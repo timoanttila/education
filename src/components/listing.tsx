@@ -32,6 +32,11 @@ export default component$(() => {
 											<ArrowRight />
 										</Link>
 									</div>
+									<div class="lastUpdated">
+										<time itemProp="dateModified" dateTime={e.updated}>
+											{e.showDate}
+										</time>
+									</div>
 
 									<div class="linkDesc">{e.description}</div>
 								</div>

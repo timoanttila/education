@@ -10,22 +10,6 @@ type ShowLink = {
 }
 
 export interface Show {
-	categoryId: number
-	categoryName: string
-	description: string
-	id: number
-	links: ShowLink[]
-	slug: string
-	title: string
-}
-
-interface NavLink {
-	id: number
-	slug: string
-	title: string
-}
-
-export interface Page {
 	categoryName: string
 	content?: string
 	created: string
@@ -35,11 +19,18 @@ export interface Page {
 	links: ShowLink[]
 	next?: NavLink
 	prev?: NavLink
+	showDate: string
 	slug: string
 	title: string
 	updated: string
 	videoId?: string
 	videoName?: string
+}
+
+interface NavLink {
+	id: number
+	slug: string
+	title: string
 }
 
 export default async function dataFetch(query: string): Promise<any> {

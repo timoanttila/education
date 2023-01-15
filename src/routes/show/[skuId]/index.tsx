@@ -5,14 +5,14 @@ import type {DocumentHead} from '@builder.io/qwik-city'
 import type {RequestHandler} from '@builder.io/qwik-city'
 import {ArrowLeft, ArrowRight, Home} from '../../../components/icons'
 import DataFetch from '../../../components/dataFech'
-import type {Page} from '../../../components/dataFech'
+import type {Show} from '../../../components/dataFech'
 
 export const onGet: RequestHandler<any> = async ({params}) => {
 	return DataFetch(`show=${params.skuId}`)
 }
 
 export default component$(() => {
-	const page = useEndpoint<Page>()
+	const page = useEndpoint<Show>()
 
 	return (
 		<div id="show">
@@ -54,36 +54,44 @@ export default component$(() => {
 							</div>
 						</div>
 
-						<h1>{data.title}</h1>
-						<div
-							dangerouslySetInnerHTML={data.content ?? data.description}
-							id="showContent"
-							class="content"
-						/>
+						<article itemScope itemType="http://schema.org/Article">
+							<h1>{data.title}</h1>
+							<div class="lastUpdated">
+								Last update:{' '}
+								<time itemProp="dateModified" dateTime={data.updated}>
+									{data.showDate}
+								</time>
+							</div>
+							<div
+								dangerouslySetInnerHTML={data.content ?? data.description}
+								id="showContent"
+								class="content"
+							/>
 
-						<ul class="social">
-							{data.links.map(link => {
-								return (
-									<li>
-										<a href={link.url} title={`${link.platformName}: ${data.title}`}>
-											<img src={`/icons/${link.platformIcon}.svg`} height="30" />
-										</a>
-									</li>
-								)
-							})}
-						</ul>
+							<ul class="social">
+								{data.links.map(link => {
+									return (
+										<li>
+											<a href={link.url} title={`${link.platformName}: ${data.title}`}>
+												<img src={`/icons/${link.platformIcon}.svg`} height="30" />
+											</a>
+										</li>
+									)
+								})}
+							</ul>
 
-						{data.videoId && (
-							<section id="youtube">
-								<h2>Latest video on YouTube: {data.videoName}</h2>
-								<div class="video">
-									<iframe
-										src={`https://www.youtube-nocookie.com/embed/${data.videoId}`}
-										title={data.videoName}
-									></iframe>
-								</div>
-							</section>
-						)}
+							{data.videoId && (
+								<section id="youtube">
+									<h2>Latest video on YouTube: {data.videoName}</h2>
+									<div class="video">
+										<iframe
+											src={`https://www.youtube-nocookie.com/embed/${data.videoId}`}
+											title={data.videoName}
+										></iframe>
+									</div>
+								</section>
+							)}
+						</article>
 					</>
 				)}
 			/>
@@ -91,9 +99,9 @@ export default component$(() => {
 	)
 })
 
-export const head: DocumentHead<Page> = ({data}) => {
+export const head: DocumentHead<Show> = ({data}) => {
 	return {
-		title: `${data.title} | Information Highway`,
+		title: `${data.title} | Education Highway`,
 		meta: [
 			{
 				name: 'description',

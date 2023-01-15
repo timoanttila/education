@@ -29,7 +29,12 @@ body {
 }
 
 h1 {
-  font-size: clamp(1.8rem, 2.4rem, 8vw);
+  font-size: clamp(1.8rem, 2.4rem, 8vw)
+}
+
+h1,
+.lastUpdated {
+  margin-bottom: 0.5rem;
 }
 
 #show h2 {
@@ -72,12 +77,8 @@ h2,
   line-height: 1.2
 }
 
-h1,
-.linkTitle {
-  margin-bottom: 0.5rem;
-}
-
 .linkTitle h2 {
+  margin: 0;
   font-size: clamp(1.4rem, 1.6rem, 6vw);
 }
 

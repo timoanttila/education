@@ -1,8 +1,17 @@
 {
-  "name": "my-qwik-basic-starter",
-  "description": "App with Routing built-in (recommended)",
+  "name": "education-timoanttila",
+  "description": "Frontend for a themed collection of free podcasts and videos. Learn how to invest and take better care of yourself.",
   "engines": {
-    "node": ">=15.0.0"
+    "node": ">=16.16"
+  },
+  "version": "1.0.0",
+  "homepage": "https://education.timoanttila.com/",
+  "bugs": "https://github.com/timoanttila/qwik-education/issues",
+  "license": "GNU GPLv3",
+  "author": {
+    "name": "Timo Anttila",
+    "email": "code@tuspe.com",
+    "url": "https://timoanttila.com"
   },
   "private": true,
   "scripts": {

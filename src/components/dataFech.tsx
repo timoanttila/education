@@ -19,6 +19,12 @@ export interface Show {
 	title: string
 }
 
+interface NavLink {
+	id: number
+	slug: string
+	title: string
+}
+
 export interface Page {
 	categoryName: string
 	content?: string
@@ -27,6 +33,8 @@ export interface Page {
 	hasImage?: boolean
 	id: number
 	links: ShowLink[]
+	next?: NavLink
+	prev?: NavLink
 	slug: string
 	title: string
 	updated: string

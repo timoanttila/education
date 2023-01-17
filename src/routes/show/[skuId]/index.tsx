@@ -1,13 +1,14 @@
 import {component$, Resource} from '@builder.io/qwik'
 import {Link} from '@builder.io/qwik-city'
-import {useEndpoint} from '@builder.io/qwik-city'
+import {useEndpoint, useLocation} from '@builder.io/qwik-city'
 import type {DocumentHead} from '@builder.io/qwik-city'
-import type {RequestHandler} from '@builder.io/qwik-city'
 import {ArrowLeft, ArrowRight, Home} from '../../../components/icons'
 import DataFetch from '../../../components/dataFech'
 import type {Show} from '../../../components/dataFech'
+import type {StaticGenerateHandler} from '@builder.io/qwik-city'
 
-export const onGet: RequestHandler<any> = async ({params}) => {
+export const onStaticGenerate: StaticGenerateHandler = async () => {
+	const {params} = useLocation()
 	return DataFetch(`show=${params.skuId}`)
 }
 

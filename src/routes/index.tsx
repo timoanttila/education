@@ -1,17 +1,17 @@
 import {component$, Resource} from '@builder.io/qwik'
-import type {RequestHandler} from '@builder.io/qwik-city'
 import {useEndpoint} from '@builder.io/qwik-city'
-import type {DocumentHead} from '@builder.io/qwik-city'
-import type {Page} from '../components/dataFech'
+import type {StaticGenerateHandler} from '@builder.io/qwik-city'
 import DataFetch from '../components/dataFech'
 import Listing from '../components/listing'
+import type {DocumentHead} from '@builder.io/qwik-city'
+import type {Show} from '../components/dataFech'
 
-export const onGet: RequestHandler<any> = async () => {
+export const onStaticGenerate: StaticGenerateHandler = async () => {
 	return DataFetch('page=business')
 }
 
 export default component$(() => {
-	const page = useEndpoint<Page>()
+	const page = useEndpoint<Show>()
 	return (
 		<>
 			<Resource
@@ -30,7 +30,7 @@ export default component$(() => {
 	)
 })
 
-export const head: DocumentHead<Page> = ({data}) => {
+export const head: DocumentHead<Show> = ({data}) => {
 	return {
 		title: `${data.title} | Education Highway`,
 		meta: [

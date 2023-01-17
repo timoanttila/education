@@ -1,12 +1,12 @@
 import {component$, Resource} from '@builder.io/qwik'
+import type {RequestHandler} from '@builder.io/qwik-city'
 import {useEndpoint} from '@builder.io/qwik-city'
-import type {StaticGenerateHandler} from '@builder.io/qwik-city'
-import DataFetch from '../components/dataFech'
-import Listing from '../components/listing'
 import type {DocumentHead} from '@builder.io/qwik-city'
 import type {Show} from '../components/dataFech'
+import DataFetch from '../components/dataFech'
+import Listing from '../components/listing'
 
-export const onStaticGenerate: StaticGenerateHandler = async () => {
+export const onGet: RequestHandler<any> = async () => {
 	return DataFetch('page=business')
 }
 

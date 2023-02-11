@@ -1,0 +1,1 @@
+export default {data:{"page-the-100-mba-show":[]},prerenderedAt:1676157987398}

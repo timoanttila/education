@@ -1,0 +1,4 @@
+.nuxt
+*.log
+node_modules
+npm-debug*

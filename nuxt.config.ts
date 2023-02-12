@@ -1,6 +1,6 @@
 export default {
-	ssr: true,
-	target: 'server',
+	ssr: false,
+	target: 'static',
 	type: 'universal',
 	server: {
 		port: 3000

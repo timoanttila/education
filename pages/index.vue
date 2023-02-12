@@ -6,7 +6,6 @@ const {data: list, pending: pendingList} = useAsyncData(
 	'category-business',
 	() => useDataFetch('category=business'),
 	{
-		server: false,
 		lazy: true
 	}
 )

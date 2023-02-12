@@ -2,8 +2,13 @@
 const {data: page, pending: pendingPage} = useAsyncData('page-business', () =>
 	useDataFetch('page=business')
 )
-const {data: list, pending: pendingList} = useAsyncData('category-business', () =>
-	useDataFetch('category=business')
+const {data: list, pending: pendingList} = useAsyncData(
+	'category-business',
+	() => useDataFetch('category=business'),
+	{
+		server: false,
+		lazy: true
+	}
 )
 
 useHead({
